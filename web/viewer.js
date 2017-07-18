@@ -31,7 +31,7 @@ function getUrlParameters(){
 };
 
 
-let DEFAULT_URL = getUrlParameters().pdfurl
+let DEFAULT_URL = '/' + getUrlParameters().paperid + '.pdf'
 
 if (typeof PDFJSDev !== 'undefined' && PDFJSDev.test('CHROME')) {
   (function rewriteUrlClosure() {
