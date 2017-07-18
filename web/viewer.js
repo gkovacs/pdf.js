@@ -16,7 +16,22 @@
 
 'use strict';
 
-let DEFAULT_URL = 'compressed.tracemonkey-pldi-09.pdf';
+function getUrlParameters(){
+  var url, hash, map, parts;
+  url = window.location.href;
+  hash = url.lastIndexOf('#');
+  if (hash !== -1) {
+    url = url.slice(0, hash);
+  }
+  map = {};
+  parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value){
+    return map[key] = decodeURIComponent(value).split('+').join(' ');
+  });
+  return map;
+};
+
+
+let DEFAULT_URL = getUrlParameters().pdfurl
 
 if (typeof PDFJSDev !== 'undefined' && PDFJSDev.test('CHROME')) {
   (function rewriteUrlClosure() {
